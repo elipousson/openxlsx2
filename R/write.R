@@ -263,12 +263,20 @@ write_data2 <- function(
     )
   }
 
-  hconvert_date1904 <- grepl('date1904="1"|date1904="true"',
-                             stri_join(unlist(wb$workbook), collapse = ""),
-                             ignore.case = TRUE)
+  is_date <- dc %in% c(
+    openxlsx2_celltype[["short_date"]], openxlsx2_celltype[["long_date"]], openxlsx2_celltype[["hms_time"]]
+  )
 
-  # TODO need to tell excel that we have a date, apply some kind of numFmt
-  data <- convert_to_excel_date(df = data, date1904 = hconvert_date1904)
+  if (any(is_date)) {
+
+    hconvert_date1904 <- grepl('date1904="1"|date1904="true"',
+                              stri_join(unlist(wb$workbook), collapse = ""),
+                              ignore.case = TRUE)
+
+    # TODO need to tell excel that we have a date, apply some kind of numFmt
+    data <- convert_to_excel_date(df = data, date1904 = hconvert_date1904)
+
+  }
 
   # backward compatible
   if (!inherits(data, "data.frame") || inherits(data, "matrix")) {
@@ -363,6 +371,7 @@ write_data2 <- function(
 
   # rtyp character vector per row
   # list(c("A1, ..., "k1"), ...,  c("An", ..., "kn"))
+  message("-- rtyp")
   rtyp <- dims_to_dataframe(dims, fill = enforce)
 
   rows_attr <- vector("list", nrow(rtyp))
@@ -432,6 +441,7 @@ write_data2 <- function(
     clls <- paste0(colnames(rtyp[1, 1]), rownames(rtyp[1, 1]))
   }
 
+  message("-- wide_to_long")
   wide_to_long(
     data,
     dc,
@@ -508,6 +518,7 @@ write_data2 <- function(
 
   ### Begin styles
 
+  message("-- apply_cell_style")
   if (applyCellStyle) {
 
     ## create a cell style format for specific types at the end of the existing

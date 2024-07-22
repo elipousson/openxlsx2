@@ -522,9 +522,12 @@ void wide_to_long(
 
       R_xlen_t pos = (j * m) + i;
 
-      std::string ref_str = Rcpp::String(ref[i]);
-      if (ref_str.compare("0") == 0)
-      ref_str = col + row;
+      std::string ref_str;
+      if (vtyp == array_formula || vtyp == cm_formula) {
+        ref_str = Rcpp::String(ref[i]);
+        if (ref_str.compare("0") == 0)
+        ref_str = col + row;
+      }
 
       // factors can be numeric or string or both. tables require the
       // column name to be character and once we have overwritten for
@@ -641,24 +644,24 @@ void wide_to_long(
       if (has_dims) {
         cell.r =  dims[idx];
 
-        zz_row_r[pos] = rm_colnum(cell.r);
-        zz_c_r[pos]   = rm_rownum(cell.r);
+        zz_row_r[idx] = rm_colnum(cell.r);
+        zz_c_r[idx]   = rm_rownum(cell.r);
       } else {
         cell.r =  col + row;
 
-        zz_row_r[pos] = row;
-        zz_c_r[pos]   = col;
+        zz_row_r[idx] = row;
+        zz_c_r[idx]   = col;
       }
 
-      if (!cell.v.empty())     zz_v[pos]     = cell.v;
-      if (!cell.c_t.empty())   zz_c_t[pos]   = cell.c_t;
+      if (!cell.v.empty())     zz_v[idx]     = cell.v;
+      if (!cell.c_t.empty())   zz_c_t[idx]   = cell.c_t;
       // if (!cell.c_cm.empty())  zz_c_cm[pos]  = cell.c_cm;
-      if (!cell.is.empty())    zz_is[pos]    = cell.is;
-      if (!cell.f.empty())     zz_f[pos]     = cell.f;
+      if (!cell.is.empty())    zz_is[idx]    = cell.is;
+      if (!cell.f.empty())     zz_f[idx]     = cell.f;
       // if (!cell.f_t.empty())   zz_f_t[pos]   = cell.f_t;
       // if (!cell.f_ref.empty()) zz_f_ref[pos] = cell.f_ref;
-      if (!cell.typ.empty())   zz_typ[pos]   = cell.typ;
-      if (!cell.r.empty())     zz_r[pos]     = cell.r;
+      if (!cell.typ.empty())   zz_typ[idx]   = cell.typ;
+      if (!cell.r.empty())     zz_r[idx]     = cell.r;
 
       ++idx;
 
