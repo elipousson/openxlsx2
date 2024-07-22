@@ -9310,7 +9310,9 @@ wbWorkbook <- R6::R6Class(
             ws$sheet_data$row_attr <- rows_attr[order(as.numeric(rows_attr[, "r"])), ]
 
             cc_rows <- ws$sheet_data$row_attr$r
-            cc_out <- cc[cc$row_r %in% cc_rows, c("row_r", "c_r",  "r", "v", "c_t", "c_s", "c_cm", "c_ph", "c_vm", "f", "f_t", "f_ref", "f_ca", "f_si", "is")]
+
+            # , "c_cm", "c_ph", "c_vm", "f_t", "f_ref", "f_ca", "f_si"
+            cc_out <- cc[cc$row_r %in% cc_rows, c("row_r", "c_r",  "r", "v", "c_t", "c_s", "f", "is")]
 
             ws$sheet_data$cc_out <- cc_out[order(as.integer(cc_out[, "row_r"]), col2int(cc_out[, "c_r"])), ]
           } else {
@@ -9323,7 +9325,7 @@ wbWorkbook <- R6::R6Class(
           use_pugixml_export <- getOption("openxlsx2.export_with_pugi", default = TRUE)
 
           if (use_pugixml_export) {
-          
+
             # create entire sheet prior to writing it
             sheet_xml <- write_worksheet(
               prior      = prior,
@@ -9331,7 +9333,7 @@ wbWorkbook <- R6::R6Class(
               sheet_data = ws$sheet_data
             )
             write_xmlPtr(doc = sheet_xml, fl = ws_file)
-          
+
           } else {
 
             if (grepl("</worksheet>", prior))

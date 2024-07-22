@@ -51,14 +51,14 @@ void xml_sheet_data_slim(
     Rcpp::CharacterVector cc_v     = cc["v"];
     Rcpp::CharacterVector cc_c_t   = cc["c_t"];
     Rcpp::CharacterVector cc_c_s   = cc["c_s"];
-    Rcpp::CharacterVector cc_c_cm  = cc["c_cm"];
-    Rcpp::CharacterVector cc_c_ph  = cc["c_ph"];
-    Rcpp::CharacterVector cc_c_vm  = cc["c_vm"];
+    // Rcpp::CharacterVector cc_c_cm  = cc["c_cm"];
+    // Rcpp::CharacterVector cc_c_ph  = cc["c_ph"];
+    // Rcpp::CharacterVector cc_c_vm  = cc["c_vm"];
     Rcpp::CharacterVector cc_f     = cc["f"];
-    Rcpp::CharacterVector cc_f_t   = cc["f_t"];
-    Rcpp::CharacterVector cc_f_ref = cc["f_ref"];
-    Rcpp::CharacterVector cc_f_ca  = cc["f_ca"];
-    Rcpp::CharacterVector cc_f_si  = cc["f_si"];
+    // Rcpp::CharacterVector cc_f_t   = cc["f_t"];
+    // Rcpp::CharacterVector cc_f_ref = cc["f_ref"];
+    // Rcpp::CharacterVector cc_f_ca  = cc["f_ca"];
+    // Rcpp::CharacterVector cc_f_si  = cc["f_si"];
     Rcpp::CharacterVector cc_is    = cc["is"];
 
     Rcpp::CharacterVector row_r    = row_attr["r"];
@@ -117,17 +117,17 @@ void xml_sheet_data_slim(
       if (!to_string(cc_c_t[i]).empty())
         file << " t" << "=\"" << to_string(cc_c_t[i]).c_str() << "\"";
 
-      // CellMetaIndex: suppress curly brackets in spreadsheet software
-      if (!to_string(cc_c_cm[i]).empty())
-        file << " cm" << "=\"" << to_string(cc_c_cm[i]).c_str() << "\"";
+      // // CellMetaIndex: suppress curly brackets in spreadsheet software
+      // if (!to_string(cc_c_cm[i]).empty())
+      //   file << " cm" << "=\"" << to_string(cc_c_cm[i]).c_str() << "\"";
 
-      // phonetics spelling
-      if (!to_string(cc_c_ph[i]).empty())
-        file << " ph" << "=\"" << to_string(cc_c_ph[i]).c_str() << "\"";
+      // // phonetics spelling
+      // if (!to_string(cc_c_ph[i]).empty())
+      //   file << " ph" << "=\"" << to_string(cc_c_ph[i]).c_str() << "\"";
 
-      // suppress curly brackets in spreadsheet software
-      if (!to_string(cc_c_vm[i]).empty())
-        file << " vm" << "=\"" << to_string(cc_c_vm[i]).c_str() << "\"";
+      // // suppress curly brackets in spreadsheet software
+      // if (!to_string(cc_c_vm[i]).empty())
+      //   file << " vm" << "=\"" << to_string(cc_c_vm[i]).c_str() << "\"";
 
       file << ">"; // end <c ...>
 
@@ -135,21 +135,21 @@ void xml_sheet_data_slim(
 
       // <f> ... </f>
       // f node: formula to be evaluated
-      if (!to_string(cc_f[i]).empty() || !to_string(cc_f_t[i]).empty() || !to_string(cc_f_si[i]).empty()) {
+      if (!to_string(cc_f[i]).empty()) { //  || !to_string(cc_f_t[i]).empty() || !to_string(cc_f_si[i]).empty()
         file << "<f";
-        if (!to_string(cc_f_t[i]).empty()) {
-          file << " t" << "=\"" << to_string(cc_f_t[i]).c_str() << "\"";
-        }
-        if (!to_string(cc_f_ref[i]).empty()) {
-          file << " ref" << "=\"" << to_string(cc_f_ref[i]).c_str() << "\"";
-        }
-        if (!to_string(cc_f_ca[i]).empty()) {
-          file << " ca" << "=\"" << to_string(cc_f_ca[i]).c_str() << "\"";
-        }
-        if (!to_string(cc_f_si[i]).empty()) {
-          file << " si" << "=\"" << to_string(cc_f_si[i]).c_str() << "\"";
-          f_si = true;
-        }
+        // if (!to_string(cc_f_t[i]).empty()) {
+        //   file << " t" << "=\"" << to_string(cc_f_t[i]).c_str() << "\"";
+        // }
+        // if (!to_string(cc_f_ref[i]).empty()) {
+        //   file << " ref" << "=\"" << to_string(cc_f_ref[i]).c_str() << "\"";
+        // }
+        // if (!to_string(cc_f_ca[i]).empty()) {
+        //   file << " ca" << "=\"" << to_string(cc_f_ca[i]).c_str() << "\"";
+        // }
+        // if (!to_string(cc_f_si[i]).empty()) {
+        //   file << " si" << "=\"" << to_string(cc_f_si[i]).c_str() << "\"";
+        //   f_si = true;
+        // }
         file << ">";
 
         file << to_string(cc_f[i]).c_str();
@@ -243,14 +243,14 @@ pugi::xml_document xml_sheet_data(Rcpp::DataFrame row_attr, Rcpp::DataFrame cc) 
   Rcpp::CharacterVector cc_v     = cc["v"];
   Rcpp::CharacterVector cc_c_t   = cc["c_t"];
   Rcpp::CharacterVector cc_c_s   = cc["c_s"];
-  Rcpp::CharacterVector cc_c_cm  = cc["c_cm"];
-  Rcpp::CharacterVector cc_c_ph  = cc["c_ph"];
-  Rcpp::CharacterVector cc_c_vm  = cc["c_vm"];
+  // Rcpp::CharacterVector cc_c_cm  = cc["c_cm"];
+  // Rcpp::CharacterVector cc_c_ph  = cc["c_ph"];
+  // Rcpp::CharacterVector cc_c_vm  = cc["c_vm"];
   Rcpp::CharacterVector cc_f     = cc["f"];
-  Rcpp::CharacterVector cc_f_t   = cc["f_t"];
-  Rcpp::CharacterVector cc_f_ref = cc["f_ref"];
-  Rcpp::CharacterVector cc_f_ca  = cc["f_ca"];
-  Rcpp::CharacterVector cc_f_si  = cc["f_si"];
+  // Rcpp::CharacterVector cc_f_t   = cc["f_t"];
+  // Rcpp::CharacterVector cc_f_ref = cc["f_ref"];
+  // Rcpp::CharacterVector cc_f_ca  = cc["f_ca"];
+  // Rcpp::CharacterVector cc_f_si  = cc["f_si"];
   Rcpp::CharacterVector cc_is    = cc["is"];
 
   Rcpp::CharacterVector row_r    = row_attr["r"];
@@ -305,17 +305,17 @@ pugi::xml_document xml_sheet_data(Rcpp::DataFrame row_attr, Rcpp::DataFrame cc) 
     if (!to_string(cc_c_t[i]).empty())
       cell.append_attribute("t") = to_string(cc_c_t[i]).c_str();
 
-    // CellMetaIndex: suppress curly brackets in spreadsheet software
-    if (!to_string(cc_c_cm[i]).empty())
-      cell.append_attribute("cm") = to_string(cc_c_cm[i]).c_str();
+    // // CellMetaIndex: suppress curly brackets in spreadsheet software
+    // if (!to_string(cc_c_cm[i]).empty())
+    //   cell.append_attribute("cm") = to_string(cc_c_cm[i]).c_str();
 
-    // phonetics spelling
-    if (!to_string(cc_c_ph[i]).empty())
-      cell.append_attribute("ph") = to_string(cc_c_ph[i]).c_str();
+    // // phonetics spelling
+    // if (!to_string(cc_c_ph[i]).empty())
+    //   cell.append_attribute("ph") = to_string(cc_c_ph[i]).c_str();
 
-    // suppress curly brackets in spreadsheet software
-    if (!to_string(cc_c_vm[i]).empty())
-      cell.append_attribute("vm") = to_string(cc_c_vm[i]).c_str();
+    // // suppress curly brackets in spreadsheet software
+    // if (!to_string(cc_c_vm[i]).empty())
+    //   cell.append_attribute("vm") = to_string(cc_c_vm[i]).c_str();
 
     // append nodes <c r="A1" ...><v>...</v></c>
 
@@ -323,21 +323,21 @@ pugi::xml_document xml_sheet_data(Rcpp::DataFrame row_attr, Rcpp::DataFrame cc) 
 
     // <f> ... </f>
     // f node: formula to be evaluated
-    if (!to_string(cc_f[i]).empty() || !to_string(cc_f_t[i]).empty() || !to_string(cc_f_si[i]).empty()) {
+    if (!to_string(cc_f[i]).empty() ) { // || !to_string(cc_f_t[i]).empty() || !to_string(cc_f_si[i]).empty()
       pugi::xml_node f = cell.append_child("f");
-      if (!to_string(cc_f_t[i]).empty()) {
-        f.append_attribute("t") = to_string(cc_f_t[i]).c_str();
-      }
-      if (!to_string(cc_f_ref[i]).empty()) {
-        f.append_attribute("ref") = to_string(cc_f_ref[i]).c_str();
-      }
-      if (!to_string(cc_f_ca[i]).empty()) {
-        f.append_attribute("ca") = to_string(cc_f_ca[i]).c_str();
-      }
-      if (!to_string(cc_f_si[i]).empty()) {
-        f.append_attribute("si") = to_string(cc_f_si[i]).c_str();
-        f_si = true;
-      }
+      // if (!to_string(cc_f_t[i]).empty()) {
+      //   f.append_attribute("t") = to_string(cc_f_t[i]).c_str();
+      // }
+      // if (!to_string(cc_f_ref[i]).empty()) {
+      //   f.append_attribute("ref") = to_string(cc_f_ref[i]).c_str();
+      // }
+      // if (!to_string(cc_f_ca[i]).empty()) {
+      //   f.append_attribute("ca") = to_string(cc_f_ca[i]).c_str();
+      // }
+      // if (!to_string(cc_f_si[i]).empty()) {
+      //   f.append_attribute("si") = to_string(cc_f_si[i]).c_str();
+      //   f_si = true;
+      // }
 
       f.append_child(pugi::node_pcdata).set_value(to_string(cc_f[i]).c_str());
     }

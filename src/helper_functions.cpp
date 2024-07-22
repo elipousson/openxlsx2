@@ -482,14 +482,14 @@ void wide_to_long(
   // pointer magic. even though these are extracted, they just point to the
   // memory in the data frame
   Rcpp::CharacterVector zz_row_r = Rcpp::as<Rcpp::CharacterVector>(zz["row_r"]);
-  Rcpp::CharacterVector zz_c_cm  = Rcpp::as<Rcpp::CharacterVector>(zz["c_cm"]);
+  // Rcpp::CharacterVector zz_c_cm  = Rcpp::as<Rcpp::CharacterVector>(zz["c_cm"]);
   Rcpp::CharacterVector zz_c_r   = Rcpp::as<Rcpp::CharacterVector>(zz["c_r"]);
   Rcpp::CharacterVector zz_v     = Rcpp::as<Rcpp::CharacterVector>(zz["v"]);
   Rcpp::CharacterVector zz_c_t   = Rcpp::as<Rcpp::CharacterVector>(zz["c_t"]);
   Rcpp::CharacterVector zz_is    = Rcpp::as<Rcpp::CharacterVector>(zz["is"]);
   Rcpp::CharacterVector zz_f     = Rcpp::as<Rcpp::CharacterVector>(zz["f"]);
-  Rcpp::CharacterVector zz_f_t   = Rcpp::as<Rcpp::CharacterVector>(zz["f_t"]);
-  Rcpp::CharacterVector zz_f_ref = Rcpp::as<Rcpp::CharacterVector>(zz["f_ref"]);
+  // Rcpp::CharacterVector zz_f_t   = Rcpp::as<Rcpp::CharacterVector>(zz["f_t"]);
+  // Rcpp::CharacterVector zz_f_ref = Rcpp::as<Rcpp::CharacterVector>(zz["f_ref"]);
   Rcpp::CharacterVector zz_typ   = Rcpp::as<Rcpp::CharacterVector>(zz["typ"]);
   Rcpp::CharacterVector zz_r     = Rcpp::as<Rcpp::CharacterVector>(zz["r"]);
 
@@ -651,12 +651,12 @@ void wide_to_long(
       }
 
       if (!cell.v.empty())     zz_v[pos]     = cell.v;
-      if (!cell.c_cm.empty())  zz_c_cm[pos]  = cell.c_cm;
       if (!cell.c_t.empty())   zz_c_t[pos]   = cell.c_t;
+      // if (!cell.c_cm.empty())  zz_c_cm[pos]  = cell.c_cm;
       if (!cell.is.empty())    zz_is[pos]    = cell.is;
       if (!cell.f.empty())     zz_f[pos]     = cell.f;
-      if (!cell.f_t.empty())   zz_f_t[pos]   = cell.f_t;
-      if (!cell.f_ref.empty()) zz_f_ref[pos] = cell.f_ref;
+      // if (!cell.f_t.empty())   zz_f_t[pos]   = cell.f_t;
+      // if (!cell.f_ref.empty()) zz_f_ref[pos] = cell.f_ref;
       if (!cell.typ.empty())   zz_typ[pos]   = cell.typ;
       if (!cell.r.empty())     zz_r[pos]     = cell.r;
 

@@ -39,10 +39,26 @@ wb_sheet_data <- function() {
 
 # Consider making some helpers for the cc stuff.
 
-empty_sheet_data_cc <- function(n) {
+# cell attributes used in most files
+empty_sheet_data <- function(n) {
   create_char_dataframe(
-    colnames = c("r", "row_r", "c_r", "c_s", "c_t", "c_cm", "c_ph", "c_vm",
-                 "v", "f", "f_t", "f_ref", "f_ca", "f_si", "is", "typ"),
+    colnames = c("r", "row_r", "c_r", "c_s", "c_t", "f", "v", "is", "typ"),
+    n = n
+  )
+}
+
+# additional cell attributes
+empty_sheet_data_cc <- function(n) {
+    create_char_dataframe(
+    colnames = c("r", "row_r", "c_r", "c_cm", "c_ph", "c_vm"),
+    n = n
+  )
+}
+
+# additional formula attributes
+empty_sheet_data_ff <- function(n) {
+  create_char_dataframe(
+    colnames = c("r", "row_r", "c_r", "f_t", "f_ref", "f_ca", "f_si"),
     n = n
   )
 }
