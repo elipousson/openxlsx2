@@ -1568,6 +1568,7 @@ wbWorkbook <- R6::R6Class(
     #' @param pivot_table a character object with a name for the pivot table
     #' @param slicer a character object with names used as slicer
     #' @param timeline a character object with names used as timeline
+    #' @param ... additional arguments passed to add_worksheet()
     #' @details
     #' `fun` can be either of AVERAGE, COUNT, COUNTA, MAX, MIN, PRODUCT, STDEV,
     #' STDEVP, SUM, VAR, VARP
@@ -1584,7 +1585,8 @@ wbWorkbook <- R6::R6Class(
       params,
       pivot_table,
       slicer,
-      timeline
+      timeline,
+      ...
     ) {
 
       if (missing(x))
@@ -1619,7 +1621,7 @@ wbWorkbook <- R6::R6Class(
 
       # for now we use a new worksheet
       if (add_sheet) {
-        self$add_worksheet()
+        self$add_worksheet(...)
       }
 
       numfmts <- NULL

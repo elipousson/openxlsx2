@@ -680,7 +680,8 @@ add pivot table
   params,
   pivot_table,
   slicer,
-  timeline
+  timeline,
+  ...
 )}\if{html}{\out{</div>}}
 }
 
@@ -710,6 +711,8 @@ add pivot table
 \item{\code{slicer}}{a character object with names used as slicer}
 
 \item{\code{timeline}}{a character object with names used as timeline}
+
+\item{\code{...}}{additional arguments passed to add_worksheet()}
 }
 \if{html}{\out{</div>}}
 }

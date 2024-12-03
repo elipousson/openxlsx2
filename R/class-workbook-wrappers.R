@@ -418,6 +418,7 @@ wb_add_data_table <- function(
 #' @param params A list of parameters to modify pivot table creation. See **Details** for available options.
 #' @param pivot_table An optional name for the pivot table
 #' @param slicer,timeline Any additional column name(s) of `x` used as slicer/timeline
+#' @param ... Additional parameters passed to add_worksheet().
 #' @seealso [wb_data()]
 #' @examples
 #' wb <- wb_workbook() %>% wb_add_worksheet() %>% wb_add_data(x = mtcars)
@@ -450,7 +451,8 @@ wb_add_pivot_table <- function(
     params,
     pivot_table,
     slicer,
-    timeline
+    timeline,
+    ...
 ) {
   assert_workbook(wb)
   if (missing(filter))      filter      <- substitute()
@@ -475,7 +477,8 @@ wb_add_pivot_table <- function(
     params      = params,
     pivot_table = pivot_table,
     slicer      = slicer,
-    timeline    = timeline
+    timeline    = timeline,
+    ...
   )
 
 }
