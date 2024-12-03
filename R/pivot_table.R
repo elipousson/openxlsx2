@@ -92,6 +92,9 @@ cacheFields <- function(wbdata, filter, rows, cols, data, slicer, timeline) {
           count = count
         )
       } else if (is_date) {
+        # avoid warning if dat is all NA
+        na.rm <- !all(is.na(dat))
+
         attr <- c(
           containsNonDate = "0",
           containsDate = "1",
@@ -100,8 +103,8 @@ cacheFields <- function(wbdata, filter, rows, cols, data, slicer, timeline) {
           containsSemiMixedTypes = containsSemiMixedTypes,
           containsBlank = containsBlank,
           # containsMixedTypes = "1",
-          minDate = format(min(dat, na.rm = TRUE), format = "%Y-%m-%dT%H:%M:%S"),
-          maxDate = format(max(dat, na.rm = TRUE), format = "%Y-%m-%dT%H:%M:%S"),
+          minDate = format(min(dat, na.rm = na.rm), format = "%Y-%m-%dT%H:%M:%S"),
+          maxDate = format(max(dat, na.rm = na.rm), format = "%Y-%m-%dT%H:%M:%S"),
           count = count
         )
 
@@ -115,14 +118,17 @@ cacheFields <- function(wbdata, filter, rows, cols, data, slicer, timeline) {
           containsInteger <- NULL
         }
 
+        # avoid warning if dat is all NA
+        na.rm <- !all(is.na(dat))
+
         attr <- c(
           containsSemiMixedTypes = containsSemiMixedTypes,
           containsString = "0",
           containsBlank = containsBlank,
           containsNumber = "1",
           containsInteger = containsInteger, # double or int?
-          minValue = as.character(min(dat, na.rm = TRUE)),
-          maxValue = as.character(max(dat, na.rm = TRUE)),
+          minValue = as.character(min(dat, na.rm = na.rm)),
+          maxValue = as.character(max(dat, na.rm = na.rm)),
           count = count
         )
       }
